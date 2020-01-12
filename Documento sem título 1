@@ -1,0 +1,107 @@
+
+
+
+Uma pessoa faz os exames do coração anualmente. Leva-os até o o seu médico de confiança, o mesmo verifica se o paciente possui ou não uma doença  do coração ou indicios de uma.  Em alguns casos é de simples percepção a existência de alguma anormalidade. Mas é para os que não são? Como podemos aumentar a acuidade e evitar mortes?
+
+Pois, segundo world-heart-federation.org, 33% de todas as pessoam que morrem, foram acometidas por doenças do coração.
+
+Uma possível  solução é usar a modelagem preditiva para averiguar  a possibilidade do paciente possuir uma doença cardíaca. 
+
+
+A modelagem preditiva de classificação é a tarefa de aproximar uma função de mapeamento (f) de variáveis ​​de entrada (X) para variáveis ​​de saída discretas (y).
+
+As variáveis ​​de saída são frequentemente chamadas de rótulos ou categorias. A função de mapeamento prevê a classe ou categoria para uma determinada observação.
+
+Por exemplo, um email de texto pode ser classificado como pertencente a uma das duas classes: "spam" e "não spam".
+
+    Um problema de classificação requer que os exemplos sejam classificados em uma de duas ou mais classes.
+    Uma classificação pode ter variáveis ​​de entrada com valor real ou discretas.
+    Um problema com duas classes é chamado de problema de classificação binária ou de duas classes.
+    Um problema em que um exemplo é atribuído a várias classes é chamado de problema de classificação com vários rótulos.
+
+É comum que os modelos de classificação prevejam um valor contínuo como a probabilidade de um determinado exemplo pertencer a cada classe de saída. As probabilidades podem ser interpretadas como a probabilidade ou a confiança de um determinado exemplo pertencente a cada classe. Uma probabilidade prevista pode ser convertida em um valor de classe, selecionando o rótulo da classe que tem a maior probabilidade.
+
+Por exemplo, um email de texto específico pode ter as probabilidades de 0,1 como sendo "spam" e 0,9 como "sem spam". Podemos converter essas probabilidades em um rótulo de classe selecionando o rótulo "não é spam", pois tem a maior probabilidade prevista.
+
+
+
+O método que utilizamos de classificação  irá fornecer 0 como resultado se  paciente não possui doença e 1 se possui.
+
+
+Os dados analisados possuem as seguintes informações dos pacientes.
+
+-- 1. Idade
+-- 2. Sexo
+-- 3. Tipo de Dor no Peito(4 valores diferentes)
+-- 4. Pressão sanguínea em repouso
+-- 5. Colesterol(ruim)  em mg/dl 
+-- 6. Açucar no sangue > 120 mg/dl 
+-- 7. Resultado do eletrocardiograma em repouso (valores 0,1,2) 
+-- 8. frequencia cardíaca miníma alcançada
+-- 9. Dor no peito induzida por exercício físico
+-- 10. oldpeak = ST depression induced by exercise relative to rest 
+-- 11. the slope of the peak exercise ST segment 
+-- 12. number of major vessels (0-3) colored by flourosopy 
+-- 13. talassemia  0 = normal; 1 = fixed defect; 2 = reversable defec
+
+São de domínio público e  fornecidos pela Cleveland Hearth Association  disponíveis em um repositório público http://archive.ics.uci.edu/ml/datasets/statlog+(heart)
+
+
+Dentre os atributos de nosso problema, vamos analisar os que podem estar relacionados com a existência de doenças coronárianas.
+
+Vejamos se o sexo é uma fator influenciàvel.
+
+Gŕafico 
+
+
+Como se observa, não há clara relação entre sexo e incidência de doença cardíaca nesses dados. Logo, não iremos utilizar esse atributo em nossa classificação.
+
+Partiremos para o tipo de Dor no peito.
+
+
+Gŕafico
+
+
+Nesse atributo, observamos que o tipo de dor 4, pode ser um influenciador para a presença de enfermidade.
+
+..........Outros gráficos.
+
+
+
+Da análise gráfica, vamos transformar nossa base, separando as variáveis para que dessa forma podermos alimentar o modelo com elas de forma individualizada.
+
+Nossa base original, possuia 13 atributos, com essas transformações, agora possuímos 23.
+
+
+
+Primeiramente vamos dividir nossos dados em duas partes, uma para o treino de nosso algoritmo e outra para o teste.
+
+-----Código em python
+
+Observe que alguns atributos que assumem numeros reais estão em escalas diferentes, para que a diferença de escala não seja um influenciador no modelo, vamos transformá-las, de modo que, estejam entre 0 e 1. 
+
+--código em Python
+
+
+O algoritmo que iremos utilizar é denominado XGboost. É um algoritmo de aprendizado de máquina  supervisionado, da familia dos algoritmos que utilizam o método de gradiente boosting.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
