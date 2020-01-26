@@ -1,0 +1,2 @@
+Jupyter Notebook é um projeto open-source criado para analise de dados, foi criado em 2014 por um grupo de pessoas anônimas as quais decidiram fornecer o seu trabalho sem fins lucrativos para outros desenvolvedores e ciêntistas que quisessem fazer pequenos algoritmos analisando dados. Como esse software é possível tirar métricas de dados e criar gráficos afim de ter uma visão panorâmica de alguma analise.
+O Jupyter Notebook pode ser usado em diferentes linguagens como R, Matlab, Scala e Java por exemplo, mas neste projeto será usado a linguagem Python na sua versão 3.

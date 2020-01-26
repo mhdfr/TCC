@@ -1,0 +1,14 @@
+Porquê Docker? Acesso em Fevereiro de 2020.
+https://www.docker.com/why-docker
+
+Container Docker para Ambiente de Desenvolvimento Jupyter Notebook. Acesso em Fevereiro de 2020.
+https://hub.docker.com/r/jupyter/datascience-notebook
+
+Manual Jupyter Docker Stacks. Acesso em Fevereiro de 2020.
+https://jupyter-docker-stacks.readthedocs.io/en/latest/index.html
+
+Jupyter Notebook. Acesso em Fevereiro de 2020.
+https://jupyter.org/
+
+Linguagem Python. Acesso em Fevereiro de 2020.
+https://www.python.org/about/
