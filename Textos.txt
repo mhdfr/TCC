@@ -44,64 +44,55 @@ Os dados analisados possuem as seguintes informações dos pacientes.
 -- 12. number of major vessels (0-3) colored by flourosopy 
 -- 13. talassemia  0 = normal; 1 = fixed defect; 2 = reversable defec
 
-São de domínio público e  fornecidos pela Cleveland Hearth Association  disponíveis em um repositório público http://archive.ics.uci.edu/ml/datasets/statlog+(heart)
+São de domínio público e  fornecidos pela Cleveland Hearth Association  disponíveis em um repositório público http://archive.ics.uci.edu/ml/datasets/statlog+(heart), os analisados, em particular, são um subconjunto, presente na competição de machine learning do website drivendata.org.
 
+Vamos detalhar os passos de nossa análise.
 
-Dentre os atributos de nosso problema, vamos analisar os que podem estar relacionados com a existência de doenças coronárianas.
-
-Vejamos se o sexo é uma fator influenciàvel.
-
-Gŕafico 
-
-
-Como se observa, não há clara relação entre sexo e incidência de doença cardíaca nesses dados. Logo, não iremos utilizar esse atributo em nossa classificação.
-
-Partiremos para o tipo de Dor no peito.
-
-
-Gŕafico
-
-
-Nesse atributo, observamos que o tipo de dor 4, pode ser um influenciador para a presença de enfermidade.
-
-..........Outros gráficos.
-
-
-
-Da análise gráfica, vamos transformar nossa base, separando as variáveis para que dessa forma podermos alimentar o modelo com elas de forma individualizada.
-
-Nossa base original, possuia 13 atributos, com essas transformações, agora possuímos 23.
-
-
-
-Primeiramente vamos dividir nossos dados em duas partes, uma para o treino de nosso algoritmo e outra para o teste.
+Primeiramente vamos dividir nossos dados em duas partes, uma para o treino de nosso algoritmo e outra para o teste. Dessa forma, conseguimos analisar a performace do algoritmo em dados que não foram 'vistos', ou seja, dados não presentes no treino, assim, vemos como ele supostamente se comportará em novos dados.Aqui, utilizamos a biblioteca ScitikLearn, o módulo TrainTestSPlit em específico. Utilizamos a razão de 70/30, ou seja, 70% dos dados para treino e 30% de dados para teste.
 
 -----Código em python
 
-Observe que alguns atributos que assumem numeros reais estão em escalas diferentes, para que a diferença de escala não seja um influenciador no modelo, vamos transformá-las, de modo que, estejam entre 0 e 1. 
+Observe que alguns atributos que assumem numeros reais estão em escalas diferentes, para que a diferença de escala não seja um influenciador no modelo, vamos transformá-las, de modo que, estejam entre 0 e 1. Aqui, utilizamos a biblioteca ScitikLearn, o módulo MinMaxScaler em específico. 
 
 --código em Python
 
+Também há variáveis que possuem dados categóricos, vamos alterá-los para que também se tornem números, sendo a escala dos mesmo de acordo com a quantidade de categorias. Por exempo, ao transformamos sexo, denominaremos mulheres com o número 0 e homens com o número 1. Iremos utilizar a biblioteca Python OneHotEncoding[] que nos permite, de maneira simples realizar essa mudança.
 
-O algoritmo que iremos utilizar é denominado XGboost. É um algoritmo de aprendizado de máquina  supervisionado, da familia dos algoritmos que utilizam o método de gradiente boosting.
-
-
-
+----código em python
 
 
+O algoritmo que iremos utilizar é denominado XGboost. É um algoritmo de aprendizado de máquina  supervisionado, da familia dos que utilizam o método de gradiente boosting em uma arvóre de decisão.[    ].
+
+Foi criado por [     ] em  em 2014 e desde da época, tem sido o principal algoritmo utilizado em competições de aprendizado de máquina[       kaggle ].
+Para a reproducibilidade do resultado, como um dos parâmetros do algoritmo, iremos utilizar 'random_seed=42'**, tal valor não afeta a performace do mesmo, é apenas um número escolhido ao acaso, para que o valor inicial seja o mesmo toda vez que Xgboost for aplicado.
+ Outros parâmetros são: Penalty e Max-Depth.O primeiro é  utilizado para que o algoritmo não se sobreajuste sobre os dados de treino, ele penaliza os coeficientes de variáveis com maior valor, os reduzindo, dessa forma, o coeficiente de algumas da variáveis vai a zero.Tornando assim, o problema menos complexo.Tal penalidade é chamada de Regressao de Lasso[].
+ O segundo, determina o tamanho das arvóres que consideraremos. Quanto maior, maiores são nossas árvores.**(Como um padrão dos algoritmos que utilizam random_seed, o número 42 é escolhido devido filme "Guia dos Mochileiros das Galáxias, no qual o número 42 é  dito como a resposta para todas as perguntas do universo.")
 
 
-
-
-
-
-
-
-
+---código em python
 
 
 
+O proximo passo é a validação cruzada. Ela permite verificar como o algoritmo se comporta, com as variáveis selecionadas pela penalidade adicionada anteriormente. Funciona do seguinte modo, dividimos nossa base de treino em 5 partes. Treinamos o algoritmo em 4 delas e testamos previamente a pontuação na 5, fazemos isso para todas as partições, ou seja, todas são utilizadas como treino e teste. Desse modo, conseguimos observar o comportamento do algoritmo com diferentes dados.(O método de validação cruzada também pode ser utilizado para otimizar os parâmetros do algoritmo, aqui, não utilizamos tal abordagem.)[    ]
+Tal forma é feita da seguinte forma
 
+--código python
+
+
+
+Por fim, verificamos o acerto de nosso algoritmo, para tal, será utilizada uma matriz de confusão[    ].
+É um tabela que mostra as frequências de classificação para cada classe do modelo. Ela vai nos mostrar as frequências:
+Verdadeiro positivo: A classe que estamos buscando foi prevista corretamente.
+Falso positivo: A classe que estamos buscando prever foi prevista incorretamente
+Falso verdadeiro: A classe que não estamos buscando prever foi prevista corretamente.
+Falso negativo A classe que não estamos buscando prever foi prevista incorretamente.
+
+
+--código python
+
+
+
+Portanto, a utilização de machine learning em saúde, pode auxiliar na detecção precoce de doenças cardíacas dando indicios sobre a existência ou não de uma doença, com um acerto razoável. Quanto ao algoritmo, com um aumento do dados e também uma posterior otimização quanto a seu parâmetros, pode-se obter um resultado ainda melhor. O modelo foi submetido a competição citada anteriormente e pontuamos entre os 11% melhores.
 
 
 
