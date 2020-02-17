@@ -1,0 +1,2 @@
+Docker é uma plataforma utilizada para criar ambientes virtuais numa máquina hospedeira. Diferente de uma máquina virtual que precisa ser orchestrada para que ela sirva as necessidades do desenvolvedor o Docker é apenas uma imagem mínima satisfazendo a necessidade de algum software servindo-o como serviço.
+Neste projeto o Docker servirá para disponibilizar um software para analise de dados em Python, o Jupyter Notebook. O Docker cria-rá uma imagem com as bibliotecas utilizadas nesse projeto e iniciará um contêiner servindo a interface do Jupyter através do navegador.
