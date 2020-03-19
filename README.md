@@ -11,7 +11,10 @@ Dentro da pasta raiz execute o comando abaixo para gerar a imagem necessária:
 
 Assim que terminar, inicie o contêiner executando o comando abaixo. O contêiner será servido na URL localhost:8888. É possível utilizar a porta 1000 ([...] -p 1000:8888 [...]) caso a porta 8888 do host esteja ocupada.
 
-	docker run --name jupyter-work-container --hostname localhost -p 8888:8888 -v "$PWD":/home/jovyan/work jupyter-image:latest
+	docker run -rm --name jupyter-work-container --hostname localhost -p 8888:8888 -v "$PWD":/home/jovyan/work jupyter-image:latest
+
+Nota: Utilize o parâmero `--rm` para que o contêiner possa ser apagado automaticamente após ser parado.
+
 
 Assim que o terminal parar de mostrar mensagens no fim deverá aparecer o seguinte texto:
 
